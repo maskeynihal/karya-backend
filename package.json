@@ -1,47 +1,54 @@
 {
-	"name": "karya-backend",
-	"version": "1.0.0",
-	"description": "Project Management  : KARYA - backend made with node.js",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "nodemon --watch .env --watch src --exec babel-node src --source-maps"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/maskeynihal/karya-frontend.git"
-	},
-	"keywords": [
-		"karya",
-		"node"
-	],
-	"author": "Nihal Maskey",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/maskeynihal/karya-frontend/issues"
-	},
-	"homepage": "https://github.com/maskeynihal/karya-frontend#readme",
-	"devDependencies": {
-		"@babel/cli": "^7.10.5",
-		"@babel/core": "^7.11.1",
-		"@babel/node": "^7.10.5",
-		"@babel/preset-env": "^7.11.0",
-		"@babel/register": "^7.10.5",
-		"babel-plugin-module-resolver": "^4.0.0",
-		"eslint-config-leapfrog": "^3.0.0",
-		"nodemon": "^2.0.4"
-	},
-	"dependencies": {
-		"bcrypt": "^5.0.0",
-		"bookshelf": "^1.2.0",
-		"cors": "^2.8.5",
-		"dotenv": "^8.2.0",
-		"express": "^4.17.1",
-		"http-status-code": "^2.1.0",
-		"jsonwebtoken": "^8.5.1",
-		"knex": "^0.21.5",
-		"morgan": "^1.10.0",
-		"pg": "^8.3.2",
-		"uuid": "^8.3.0"
-	}
+  "name": "karya-backend",
+  "version": "1.0.0",
+  "description": "Project Management  : KARYA - backend made with node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --watch .env --watch src --exec babel-node src --source-maps",
+    "knex": "babel-node node_modules/.bin/knex",
+    "migrate": "yarn knex migrate:latest --knexfile src/config/knexfile.js",
+    "seed": "yarn knex seed:run --knexfile src/config/knexfile.js",
+    "rollback": "yarn knex migrate:rollback --knexfile src/config/knexfile.js",
+    "make:seeder": "yarn knex seed:make --knexfile src/config/knexfile.js",
+    "make:migration": "yarn knex migrate:make --knexfile src/config/knexfile.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maskeynihal/karya-frontend.git"
+  },
+  "keywords": [
+    "karya",
+    "node"
+  ],
+  "author": "Nihal Maskey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maskeynihal/karya-frontend/issues"
+  },
+  "homepage": "https://github.com/maskeynihal/karya-frontend#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "bookshelf": "^1.2.0",
+    "bookshelf-virtuals-plugin": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http-status-code": "^2.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.5",
+    "morgan": "^1.10.0",
+    "pg": "^8.3.2",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/register": "^7.10.5",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "eslint-config-leapfrog": "^3.0.0",
+    "nodemon": "^2.0.4"
+  }
 }
