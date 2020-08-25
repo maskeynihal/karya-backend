@@ -20,6 +20,7 @@ var connection = {
   timezone: 'UTC'
 };
 exports.connection = connection;
+console.log(process.env.DB_PORT);
 var client = process.env.DB_CLIENT;
 exports.client = client;
 var migrations = {

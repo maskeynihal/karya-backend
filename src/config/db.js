@@ -1,14 +1,12 @@
-import kenxJs from 'knex';
-import bookshelfJs from 'bookshelf';
+import knexJs from 'knex';
+import bookshelf from 'bookshelf';
 
-import knexConfig from '@/config/kenxfile';
+import * as knexConfig from '@/config/knexfile';
 
 /**
  * Database connection.
  */
 const knex = knexJs(knexConfig);
-const bookshelf = bookshelfJs(knex);
+const db = bookshelf(knex);
 
-bookshelf.plugin(['bookshelf-virtuals-plugin']);
-
-export default bookshelf;
+export default db;

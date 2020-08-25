@@ -5,7 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-require('dotenv').config().load();
+require('dotenv').config({
+  path: '../../.env'
+});
 
 var _default = {
   db_port: process.env.DB_PORT

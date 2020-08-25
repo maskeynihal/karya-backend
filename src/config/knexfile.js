@@ -10,7 +10,7 @@ export const connection = {
   charset: 'utf8',
   timezone: 'UTC'
 };
-
+console.log(process.env.DB_PORT);
 export const client = process.env.DB_CLIENT;
 
 export const migrations = {

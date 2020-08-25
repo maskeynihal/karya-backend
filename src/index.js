@@ -1,14 +1,14 @@
-import cors from 'cors';
+import './env';
+import './config/db';
 
-import express, { json } from 'express';
+import cors from 'cors';
+import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 
-require('dotenv').config();
-// import routes from './routes';
-// import json from './middlewares/json';
-
-// import * as errorHandler from './middlewares/errorHandler';
+import routes from './routes';
+import json from './middlewares/json';
+import * as errorHandler from './middlewares/errorHandler';
 
 const app = express();
 
@@ -18,8 +18,6 @@ app.use(
     extended: true
   })
 );
-
-app.use(json());
 
 const APP_PORT =
   (process.env.NODE_ENV === 'test' ? process.env.TEST_APP_PORT : process.env.APP_PORT) || process.env.PORT || '8000';
@@ -35,15 +33,23 @@ app.locals.version = process.env.APP_VERSION;
 app.use(cors());
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
-// app.use(errorHandler.bodyParser);
-// app.use(json);
+app.use(errorHandler.bodyParser);
+app.use(json);
 
 // API Routes
-// app.use('/api', routes);
+app.use('/api', routes);
 
 // Error Middleware
-// app.use(errorHandler.genericErrorHandler);
-// app.use(errorHandler.methodNotAllowed);
+app.use(errorHandler.genericErrorHandler);
+app.use(errorHandler.methodNotAllowed);
+// app.use((err, req, res, next) => {
+//   res.status(err.status || 400).json({
+//     error: true,
+//     message: err.msg || err.message || err.detail || err,
+//     status: err.status || 400,
+//     errors: err
+//   });
+// });
 
 app.listen(app.get('port'), app.get('host'), () => {
   console.log(`Server started at http://${app.get('host')}:${app.get('port')}/api`);
@@ -52,27 +58,13 @@ app.listen(app.get('port'), app.get('host'), () => {
 // Catch unhandled rejections
 process.on('unhandledRejection', (err) => {
   console.error('Unhandled rejection', err);
-
-  try {
-    console.error(err);
-  } catch (err) {
-    console.error('Sentry error', err);
-  } finally {
-    process.exit(1);
-  }
+  process.exit(1);
 });
 
 // Catch uncaught exceptions
 process.on('uncaughtException', (err) => {
   console.error('Uncaught exception', err);
-
-  try {
-    console.error('Sentry error', err);
-  } catch (err) {
-    console.error('Sentry error', err);
-  } finally {
-    process.exit(1);
-  }
+  process.exit(1);
 });
 
 export default app;
