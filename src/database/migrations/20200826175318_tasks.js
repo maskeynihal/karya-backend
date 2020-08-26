@@ -11,7 +11,7 @@ export function up(knex) {
     table.text('description');
     table.timestamp('deadline').defaultTo(knex.raw('now()'));
     table.integer('project_id').references('projects.id').unsigned().notNull();
-    table.integer('assignee_id').references('users.id').unsigned().notNull();
+    table.integer('assignee_id').references('users.id').unsigned();
     table.timestamp('created_at').notNull().defaultTo(knex.raw('now()'));
     table.timestamp('updated_at').notNull().defaultTo(knex.raw('now()'));
   });

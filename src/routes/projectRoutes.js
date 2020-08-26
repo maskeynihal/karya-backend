@@ -9,7 +9,7 @@ const router = Router();
 /**
  * GET /api/projects
  */
-router.get('/', authenticated, projectController.fetchAll);
+router.get('/', projectController.fetchAll);
 
 /**
  * GET /api/projects/:id

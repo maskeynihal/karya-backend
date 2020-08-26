@@ -29,21 +29,6 @@ export function getProject(id) {
     });
 }
 
-// /**
-//  * Get a project.
-//  *
-//  * @param   {Number|String}  id
-//  * @returns {Promise}
-//  */
-// export function getProjectByEmail(email) {
-//   return new Project({ email })
-//     .fetch()
-//     .then((project) => project)
-//     .catch(Project.NotFoundError, () => {
-//       throw Boom.notFound('Project not found');
-//     });
-// }
-
 /**
  * Create new project.
  *
