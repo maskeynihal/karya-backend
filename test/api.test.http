@@ -7,7 +7,7 @@ content-type: application/json
 # Get users
 GET http://localhost:8000/api/users
 content-type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hc2tleW5paGFsQGdtYWlsLmNvbSIsInVzZXJJZCI6ImI1NGI2OTFhLWRlODMtNDY2ZS1iYThlLWJiNGQ2ZTIzMmM0ZSIsImlhdCI6MTU5ODQzODMzNywiZXhwIjoxNTk4NDc0NzM3fQ.XLXA1RNBWB0wIxs7Q1MbLIUNK9D3qlGoq96_hpyoVha
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hc2tleW5paGFsQGdtYWlsLmNvbSIsInVzZXJJZCI6ImI1NGI2OTFhLWRlODMtNDY2ZS1iYThlLWJiNGQ2ZTIzMmM0ZSIsImlhdCI6MTU5ODQzODMzNywiZXhwIjoxNTk4NDc0NzM3fQ.XLXA1RNBWB0wIxs7Q1MbLIUNK9D3qlGoq96_hpyoVhw
 ###
 # create user
 POST http://localhost:8000/api/users
@@ -28,3 +28,9 @@ Content-Type: application/json
     "email": "maskeynihal@gmail.com",
     "password": "password"
 }
+
+###
+# Projects
+GET http://localhost:8000/api/projects
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hc2tleW5paGFsQGdtYWlsLmNvbSIsInVzZXJJZCI6ImI1NGI2OTFhLWRlODMtNDY2ZS1iYThlLWJiNGQ2ZTIzMmM0ZSIsImlhdCI6MTU5ODQzODMzNywiZXhwIjoxNTk4NDc0NzM3fQ.XLXA1RNBWB0wIxs7Q1MbLIUNK9D3qlGoq96_hpyoVhw

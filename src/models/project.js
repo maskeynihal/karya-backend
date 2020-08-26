@@ -1,12 +1,12 @@
 import db from '@/config/db';
 import Boom from '@hapi/boom';
 
-const TABLE_NAME = 'users';
+const TABLE_NAME = 'projects';
 
 /**
- * User model.
+ * Project model.
  */
-class User extends db.Model {
+class Project extends db.Model {
   /**
    * Get table name.
    */
@@ -22,4 +22,4 @@ class User extends db.Model {
   }
 }
 
-export default User;
+export default Project;
