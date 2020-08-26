@@ -30,7 +30,7 @@ var migrations = {
 };
 exports.migrations = migrations;
 var seeds = {
-  directory: '../database/seed',
+  directory: '../database/seeds',
   stub: '../stubs/seed.stub'
 };
 exports.seeds = seeds;

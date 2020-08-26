@@ -3,6 +3,7 @@ import Boom from '@hapi/boom';
 import User from '@/models/user';
 import { uniqueId } from 'lodash';
 import { v4 as uuid } from 'uuid';
+import hashPassword from '@/utils/hashPassword';
 
 /**
  * Get all users.
@@ -35,7 +36,12 @@ export function getUser(id) {
  * @returns {Promise}
  */
 export function createUser(user) {
-  return new User({ name: user.name, email: user.email, password: user.password, user_id: uuid() }).save();
+  return new User({
+    name: user.name,
+    email: user.email,
+    password: hashPassword(user.password),
+    user_id: uuid()
+  }).save();
 }
 
 /**

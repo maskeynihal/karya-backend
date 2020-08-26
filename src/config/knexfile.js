@@ -20,6 +20,6 @@ export const migrations = {
 };
 
 export const seeds = {
-  directory: '../database/seed',
+  directory: '../database/seeds',
   stub: '../stubs/seed.stub'
 };

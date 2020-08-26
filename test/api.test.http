@@ -10,11 +10,11 @@ content-type: application/json
 
 ###
 # create user
-POST http://localhost:8000/api/users HTTP/1.1
+POST http://localhost:8000/api/users
 content-type: application/json
 
 {
-    "name": "admin",
-    "email": "admin@karya.com",
+    "name": "engineer",
+    "email": "enagineae@karya.com",
     "password": "password"
 }

@@ -2,6 +2,8 @@ import Joi from '@hapi/joi';
 
 import validate from '@/utils/validate';
 import * as userService from '@/services/userService';
+import columnUniqueCheck from 'utils/columnUniqueCheck';
+import User from 'models/user';
 
 // Validation schema
 const schema = Joi.object({
@@ -19,10 +21,15 @@ const schema = Joi.object({
  * @param   {Function} next
  * @returns {Promise}
  */
-function userValidator(req, res, next) {
-  return validate(req.body, schema)
-    .then(() => next())
-    .catch((err) => next(err));
+async function userValidator(req, res, next) {
+  try {
+    const validation = await validate(req.body, schema);
+    const uniqueColumn = await columnUniqueCheck(new User(), 'email', req.body.email);
+    next();
+    return validation;
+  } catch (error) {
+    next(error);
+  }
 }
 
 /**
