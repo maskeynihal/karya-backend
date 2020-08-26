@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import userRoutes from './routes/userRoutes';
-
+import authRoutes from './routes/authRoutes';
 /**
  * Contains all API routes for the application.
  */
@@ -18,5 +18,6 @@ router.get('/', (req, res) => {
 });
 
 router.use('/users', userRoutes);
+router.use('/auth', authRoutes);
 
 export default router;

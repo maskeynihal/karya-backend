@@ -2,13 +2,14 @@ import { Router } from 'express';
 
 import * as userController from '@/controllers/userController';
 import { findUser, userValidator } from '@/validators/userValidator';
+import authenticated from 'middlewares/authenticated';
 
 const router = Router();
 
 /**
  * GET /api/users
  */
-router.get('/', userController.fetchAll);
+router.get('/', authenticated, userController.fetchAll);
 
 /**
  * GET /api/users/:id

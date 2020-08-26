@@ -30,6 +30,21 @@ export function getUser(id) {
 }
 
 /**
+ * Get a user.
+ *
+ * @param   {Number|String}  id
+ * @returns {Promise}
+ */
+export function getUserByEmail(email) {
+  return new User({ email })
+    .fetch()
+    .then((user) => user)
+    .catch(User.NotFoundError, () => {
+      throw Boom.notFound('User not found');
+    });
+}
+
+/**
  * Create new user.
  *
  * @param   {Object}  user
