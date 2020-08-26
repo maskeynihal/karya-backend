@@ -1,33 +1,33 @@
 import { Router } from 'express';
 
 import * as projectController from '@/controllers/projectController';
-import { findProject, projectValidator } from '@/validators/projectValidator';
+import { findProject, projectValidator, projectUpdateValidator } from '@/validators/projectValidator';
 import authenticated from 'middlewares/authenticated';
 
 const router = Router();
 
 /**
- * GET /api/users
+ * GET /api/projects
  */
 router.get('/', authenticated, projectController.fetchAll);
 
 /**
- * GET /api/users/:id
+ * GET /api/projects/:id
  */
 router.get('/:id', projectController.fetchById);
 
 /**
- * POST /api/users
+ * POST /api/projects
  */
 router.post('/', projectValidator, projectController.create);
 
 /**
- * PUT /api/users/:id
+ * PUT /api/projects/:id
  */
-router.put('/:id', findProject, projectValidator, projectController.update);
+router.put('/:id', findProject, projectUpdateValidator, projectController.update);
 
 /**
- * DELETE /api/users/:id
+ * DELETE /api/projects/:id
  */
 router.delete('/:id', findProject, projectController.deleteProject);
 

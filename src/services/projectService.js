@@ -29,20 +29,20 @@ export function getProject(id) {
     });
 }
 
-/**
- * Get a project.
- *
- * @param   {Number|String}  id
- * @returns {Promise}
- */
-export function getProjectByEmail(email) {
-  return new Project({ email })
-    .fetch()
-    .then((project) => project)
-    .catch(Project.NotFoundError, () => {
-      throw Boom.notFound('Project not found');
-    });
-}
+// /**
+//  * Get a project.
+//  *
+//  * @param   {Number|String}  id
+//  * @returns {Promise}
+//  */
+// export function getProjectByEmail(email) {
+//   return new Project({ email })
+//     .fetch()
+//     .then((project) => project)
+//     .catch(Project.NotFoundError, () => {
+//       throw Boom.notFound('Project not found');
+//     });
+// }
 
 /**
  * Create new project.
@@ -53,9 +53,8 @@ export function getProjectByEmail(email) {
 export function createProject(project) {
   return new Project({
     name: project.name,
-    email: project.email,
-    password: hashPassword(project.password),
-    user_id: uuid()
+    description: project.description,
+    project_manager_id: project.project_manager_id
   }).save();
 }
 
@@ -67,7 +66,7 @@ export function createProject(project) {
  * @returns {Promise}
  */
 export function updateProject(id, project) {
-  return new Project({ id }).save({ name: project.name });
+  return new Project({ id }).save({ ...project });
 }
 
 /**

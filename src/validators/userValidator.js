@@ -2,8 +2,8 @@ import Joi from '@hapi/joi';
 
 import validate from '@/utils/validate';
 import * as userService from '@/services/userService';
-import columnUniqueCheck from 'utils/columnUniqueCheck';
-import User from 'models/user';
+import { columnUniqueCheck } from '@/utils/columnUniqueCheck';
+import User from '@/models/user';
 
 // Validation schema
 const schema = Joi.object({

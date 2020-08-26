@@ -7,7 +7,7 @@ content-type: application/json
 # Get users
 GET http://localhost:8000/api/users
 content-type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hc2tleW5paGFsQGdtYWlsLmNvbSIsInVzZXJJZCI6ImI1NGI2OTFhLWRlODMtNDY2ZS1iYThlLWJiNGQ2ZTIzMmM0ZSIsImlhdCI6MTU5ODQzODMzNywiZXhwIjoxNTk4NDc0NzM3fQ.XLXA1RNBWB0wIxs7Q1MbLIUNK9D3qlGoq96_hpyoVhw
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGthcnlhLmNvbSIsInVzZXJJZCI6ImJhNzFlNzQ3LTIzOWYtNGZhYi1hMGY5LTc1M2MzNGQxZjg3NyIsImlhdCI6MTU5ODQ1NjQwNCwiZXhwIjoxNTk4NDkyODA0fQ.LdPRRxDsyQuU2Rr_QdjqfOoMFuFAwqzKpjQY3RkyW10
 ###
 # create user
 POST http://localhost:8000/api/users
@@ -25,7 +25,7 @@ POST http://localhost:8000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "maskeynihal@gmail.com",
+    "email": "admin@karya.com",
     "password": "password"
 }
 
@@ -33,4 +33,36 @@ Content-Type: application/json
 # Projects
 GET http://localhost:8000/api/projects
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hc2tleW5paGFsQGdtYWlsLmNvbSIsInVzZXJJZCI6ImI1NGI2OTFhLWRlODMtNDY2ZS1iYThlLWJiNGQ2ZTIzMmM0ZSIsImlhdCI6MTU5ODQzODMzNywiZXhwIjoxNTk4NDc0NzM3fQ.XLXA1RNBWB0wIxs7Q1MbLIUNK9D3qlGoq96_hpyoVhw
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGthcnlhLmNvbSIsInVzZXJJZCI6ImJhNzFlNzQ3LTIzOWYtNGZhYi1hMGY5LTc1M2MzNGQxZjg3NyIsImlhdCI6MTU5ODQ1NjQwNCwiZXhwIjoxNTk4NDkyODA0fQ.LdPRRxDsyQuU2Rr_QdjqfOoMFuFAwqzKpjQY3RkyW10
+
+###
+#create post
+POST http://localhost:8000/api/projects
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGthcnlhLmNvbSIsInVzZXJJZCI6ImJhNzFlNzQ3LTIzOWYtNGZhYi1hMGY5LTc1M2MzNGQxZjg3NyIsImlhdCI6MTU5ODQ1NjQwNCwiZXhwIjoxNTk4NDkyODA0fQ.LdPRRxDsyQuU2Rr_QdjqfOoMFuFAwqzKpjQY3RkyW10
+content-type: application/json
+
+{
+    "name": "Karya Project 1",
+    "description": "This is projects management system",
+    "project_manager_id": 2
+}
+
+###
+#single project
+GET http://localhost:8000/api/projects/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGthcnlhLmNvbSIsInVzZXJJZCI6ImJhNzFlNzQ3LTIzOWYtNGZhYi1hMGY5LTc1M2MzNGQxZjg3NyIsImlhdCI6MTU5ODQ1NjQwNCwiZXhwIjoxNTk4NDkyODA0fQ.LdPRRxDsyQuU2Rr_QdjqfOoMFuFAwqzKpjQY3RkyW10
+content-type: application/json
+
+
+###
+#Edit project
+PUT http://localhost:8000/api/projects/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGthcnlhLmNvbSIsInVzZXJJZCI6ImJhNzFlNzQ3LTIzOWYtNGZhYi1hMGY5LTc1M2MzNGQxZjg3NyIsImlhdCI6MTU5ODQ1NjQwNCwiZXhwIjoxNTk4NDkyODA0fQ.LdPRRxDsyQuU2Rr_QdjqfOoMFuFAwqzKpjQY3RkyW10
+content-type: application/json
+
+{
+    "name": "Karya Project 2",
+    "description": "This is projects management system",
+    "project_manager_id": 2
+}
+
