@@ -11,7 +11,10 @@ import hashPassword from '@/utils/hashPassword';
  * @returns {Promise}
  */
 export function getAllUsers() {
-  return User.fetchAll();
+  return User.fetchAll({
+    withRelated: ['role', 'projects', 'tasksAssigns', 'tasksTags', 'comments'],
+    debug: true
+  });
 }
 
 /**
