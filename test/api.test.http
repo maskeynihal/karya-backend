@@ -24,6 +24,11 @@ content-type: application/json
 }
 
 ###
+# Get single user
+GET http://localhost:8000/api/users/1
+content-type: application/json
+
+###
 # update user
 PUT http://localhost:8000/api/users/4
 content-type: application/json
@@ -82,8 +87,29 @@ content-type: application/json
 
 {
     "name": "Karya Project 2",
-    "description": "This is projects management system",
+    "description": "This is projets management system",
     "project_manager_id": 2
+}
+
+###
+#add project users
+POST http://localhost:8000/api/projects/1/add-users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGthcnlhLmNvbSIsInVzZXJJZCI6ImJhNzFlNzQ3LTIzOWYtNGZhYi1hMGY5LTc1M2MzNGQxZjg3NyIsImlhdCI6MTU5ODQ5NDU3NCwiZXhwIjoxNTk4NTMwOTc0fQ.Ia-Blg2v2AmDOorLeqB5nuuujyx7BcU4xCS3SPJMUZ4
+content-type: application/json
+
+{
+    "users": [{"user_id": 3}, {"user_id": 1}]
+}
+
+
+###
+#Remove Users from projects
+DELETE  http://localhost:8000/api/projects/1/remove-users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGthcnlhLmNvbSIsInVzZXJJZCI6ImJhNzFlNzQ3LTIzOWYtNGZhYi1hMGY5LTc1M2MzNGQxZjg3NyIsImlhdCI6MTU5ODQ5NDU3NCwiZXhwIjoxNTk4NTMwOTc0fQ.Ia-Blg2v2AmDOorLeqB5nuuujyx7BcU4xCS3SPJMUZ4
+content-type: application/json
+
+{
+    "users": [{"user_id": 3}, {"user_id": 1}]
 }
 
 # Task

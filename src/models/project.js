@@ -32,7 +32,7 @@ class Project extends db.Model {
   }
 
   users() {
-    return this.belongsToMany(User, 'project_user', 'user_id', 'project_id');
+    return this.belongsToMany(User, 'project_user', 'project_id', 'user_id', 'id', 'id');
   }
 }
 

@@ -66,3 +66,20 @@ export function updateProject(id, project) {
 export function deleteProject(id) {
   return new Project({ id }).fetch().then((project) => project.destroy());
 }
+
+/**
+ * Add Project User
+ */
+
+export async function addUsers(id, { users }) {
+  const projectUsers = new Project({ id }).users();
+  await projectUsers.detach(users);
+  return projectUsers.attach(users);
+}
+
+/**
+ * Remove users from projects
+ */
+export async function removeUsers(id, { users }) {
+  return new Project({ id }).users().detach(users);
+}

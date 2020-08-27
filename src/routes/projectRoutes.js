@@ -32,7 +32,13 @@ router.put('/:id', findProject, projectUpdateValidator, projectController.update
 router.delete('/:id', findProject, projectController.deleteProject);
 
 /**
- * POST /api/projects
+ * POST /api/projects/:id/add-user
  */
-router.post('/add-user', projectController.addUser);
+router.post('/:id/add-users', projectController.addUsers);
+
+/**
+ * POST /api/projects/:id/add-user
+ */
+router.delete('/:id/remove-users', projectController.removeUsers);
+
 export default router;

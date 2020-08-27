@@ -4,6 +4,7 @@ import validate from '@/utils/validate';
 import * as projectService from '@/services/projectService';
 import { columnUniqueCheck, columnUniqueCheckWithIgnore } from '@/utils/columnUniqueCheck';
 import Project from 'models/project';
+import shouldBeProjectManger from './rules/shouldBeProjectManager';
 
 // Validation schema
 const schema = Joi.object({
@@ -24,6 +25,7 @@ async function projectValidator(req, res, next) {
   try {
     const validation = await validate(req.body, schema);
     const uniqueColumn = await columnUniqueCheck(new Project(), 'name', req.body.name);
+    const isProjectManger = await shouldBeProjectManger(req.body.project_manager_id);
     next();
     return validation;
   } catch (error) {
@@ -44,6 +46,7 @@ async function projectUpdateValidator(req, res, next) {
   try {
     const validation = await validate(req.body, schema);
     const uniqueColumn = await columnUniqueCheckWithIgnore(new Project(), 'name', req.body.name, req.params.id);
+    const isProjectManger = await shouldBeProjectManger(req.body.project_manager_id);
     next();
     return validation;
   } catch (error) {

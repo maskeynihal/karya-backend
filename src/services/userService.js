@@ -25,8 +25,10 @@ export function getAllUsers() {
  */
 export function getUser(id) {
   return new User({ id })
-    .fetch()
-    .then((user) => user)
+    .fetch({
+      withRelated: ['role', 'projects', 'tasksAssigns', 'tasksTags', 'comments']
+    })
+    .then((user) => user.serialize())
     .catch(User.NotFoundError, () => {
       throw Boom.notFound('User not found');
     });
