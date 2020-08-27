@@ -1,5 +1,7 @@
 import db from '@/config/db';
 import Boom from '@hapi/boom';
+import Task from './task';
+import User from './user';
 
 const TABLE_NAME = 'comments';
 
@@ -19,6 +21,14 @@ class Comment extends db.Model {
    */
   get hasTimestamps() {
     return true;
+  }
+
+  task() {
+    return this.belongsTo(Task, 'task_id', 'id');
+  }
+
+  commenter() {
+    return this.belongsTo(User, 'commenter_id', 'id');
   }
 }
 

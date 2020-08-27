@@ -11,7 +11,9 @@ import hashPassword from '@/utils/hashPassword';
  * @returns {Promise}
  */
 export function getAllComments() {
-  return Comment.fetchAll();
+  return Comment.fetchAll({
+    withRelated: ['task', 'commenter']
+  });
 }
 
 /**

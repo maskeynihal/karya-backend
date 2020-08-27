@@ -10,7 +10,9 @@ import { v4 as uuid } from 'uuid';
  * @returns {Promise}
  */
 export function getAllTasks() {
-  return Task.fetchAll();
+  return Task.fetchAll({
+    withRelated: ['assignedUser', 'project', 'taggedUsers']
+  });
 }
 
 /**
