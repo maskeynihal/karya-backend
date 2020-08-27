@@ -6,6 +6,7 @@ import authenticated from 'middlewares/authenticated';
 import basicAuthorization from 'middlewares/basicAuthorization';
 
 import { ADMIN_ROLE_ID, PROJECT_MANAGER_ROLE_ID } from '@/utils/constants';
+import canOnProject from 'middlewares/canOnProject';
 
 const router = Router();
 
@@ -31,6 +32,7 @@ router.put(
   '/:id',
   findProject,
   basicAuthorization([ADMIN_ROLE_ID, PROJECT_MANAGER_ROLE_ID]),
+  canOnProject,
   projectUpdateValidator,
   projectController.update
 );
@@ -38,21 +40,16 @@ router.put(
 /**
  * DELETE /api/projects/:id
  */
-router.delete(
-  '/:id',
-  findProject,
-  basicAuthorization([ADMIN_ROLE_ID, PROJECT_MANAGER_ROLE_ID]),
-  projectController.deleteProject
-);
+router.delete('/:id', findProject, basicAuthorization([ADMIN_ROLE_ID]), projectController.deleteProject);
 
 /**
  * POST /api/projects/:id/add-user
  */
-router.post('/:id/add-users', projectController.addUsers);
+router.post('/:id/add-users', canOnProject, projectController.addUsers);
 
 /**
  * DELETE /api/projects/:id/add-user
  */
-router.delete('/:id/remove-users', projectController.removeUsers);
+router.delete('/:id/remove-users', canOnProject, projectController.removeUsers);
 
 export default router;

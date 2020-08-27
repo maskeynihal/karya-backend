@@ -1,5 +1,6 @@
 import * as userService from '@/services/userService';
 import Boom from '@hapi/boom';
+import { UNAUTHORIZED_ACTION_MESSAGE } from '@/utils/constants';
 
 // authorization based on roles
 
@@ -11,7 +12,7 @@ export default (allowRoles) => {
       if (allowRoles.includes(userRoleId)) {
         next();
       } else {
-        throw Boom.unauthorized('You are not authorized to perform this action');
+        throw Boom.unauthorized(UNAUTHORIZED_ACTION_MESSAGE);
       }
     } catch (error) {
       next(error);
