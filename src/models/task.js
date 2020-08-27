@@ -48,13 +48,13 @@ class Task extends db.Model {
 
   taggedUsers() {
     return this.belongsToMany(User, 'task_user', 'task_id', 'user_id')
-      .query({ where: { assign_type_id: ASSIGN_TYPE_TAG }, debug: true })
+      .query({ where: { assign_type_id: ASSIGN_TYPE_TAG } })
       .withPivot('assign_type_id');
   }
 
   removedUsers() {
     return this.belongsToMany(User, 'task_user', 'task_id', 'user_id')
-      .query({ where: { assign_type_id: REMOVED_TYPE }, debug: true })
+      .query({ where: { assign_type_id: REMOVED_TYPE } })
       .withPivot('assign_type_id');
   }
 

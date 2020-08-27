@@ -1,0 +1,6 @@
+export default {
+  ADMIN_ROLE_ID: 1,
+  PROJECT_MANAGER_ROLE_ID: 2,
+  TEAM_LEAD_ROLE_ID: 3,
+  ENGINEER_ROLE_ID: 4
+};

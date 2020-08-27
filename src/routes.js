@@ -6,8 +6,6 @@ import authRoutes from './routes/authRoutes';
 import projectRoutes from './routes/projectRoutes';
 import taskRoutes from './routes/taskRoutes';
 import commentRoutes from './routes/commentRoutes';
-import canViewProjects from 'middlewares/canViewProjects';
-
 /**
  * Contains all API routes for the application.
  */
@@ -30,7 +28,7 @@ router.use('/auth', authRoutes);
 router.use('/users', authenticated, userRoutes);
 
 //projects
-router.use('/projects', authenticated, canViewProjects, projectRoutes);
+router.use('/projects', authenticated, projectRoutes);
 
 // task
 router.use('/tasks', authenticated, taskRoutes);

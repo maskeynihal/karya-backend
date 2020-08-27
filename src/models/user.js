@@ -40,7 +40,7 @@ class User extends db.Model {
 
   tasksTags() {
     return this.belongsToMany(Task, 'task_user', 'user_id', 'task_id')
-      .query({ where: { assign_type_id: ASSIGN_TYPE_TAG }, debug: true })
+      .query({ where: { assign_type_id: ASSIGN_TYPE_TAG } })
       .withPivot('assign_type_id');
   }
 
