@@ -37,7 +37,7 @@ router.delete('/:id', findProject, projectController.deleteProject);
 router.post('/:id/add-users', projectController.addUsers);
 
 /**
- * POST /api/projects/:id/add-user
+ * DELETE /api/projects/:id/add-user
  */
 router.delete('/:id/remove-users', projectController.removeUsers);
 

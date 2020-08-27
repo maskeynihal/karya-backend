@@ -80,6 +80,6 @@ export async function addUsers(id, { users }) {
 /**
  * Remove users from projects
  */
-export async function removeUsers(id, { users }) {
+export function removeUsers(id, { users }) {
   return new Project({ id }).users().detach(users);
 }

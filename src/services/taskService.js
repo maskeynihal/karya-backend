@@ -4,6 +4,7 @@ import Task from '@/models/task';
 import { uniqueId } from 'lodash';
 import { v4 as uuid } from 'uuid';
 
+const ASSIGN_TYPE_TAG = 1;
 /**
  * Get all users.
  *
@@ -11,7 +12,7 @@ import { v4 as uuid } from 'uuid';
  */
 export function getAllTasks() {
   return Task.fetchAll({
-    withRelated: ['assignedUser', 'project', 'taggedUsers']
+    withRelated: ['assignedUser', 'project', 'taggedUsers', 'comments.commenter']
   });
 }
 
@@ -53,8 +54,15 @@ export function createTask(task) {
  * @param   {Object}         task
  * @returns {Promise}
  */
-export function updateTask(id, task) {
-  return new Task({ id }).save({ ...task });
+export async function updateTask(id, task) {
+  const fetchedTask = await new Task({ id }).fetch();
+  return fetchedTask.save(
+    { ...task },
+    {
+      patch: true,
+      method: 'update'
+    }
+  );
 }
 
 /**
@@ -65,4 +73,26 @@ export function updateTask(id, task) {
  */
 export function deleteTask(id) {
   return new Task({ id }).fetch().then((task) => task.destroy());
+}
+
+/**
+ * Tag User on task.
+ *
+ * @param   {Number|String}  id
+ * @returns {Promise}
+ */
+export async function addTaggedUsers(id, { users }) {
+  const usersInsert = users.map((user) => {
+    return { ...user, assign_type_id: ASSIGN_TYPE_TAG };
+  });
+  const taskTaggedUsers = await new Task({ id }).taggedUsers();
+  await taskTaggedUsers.detach(usersInsert);
+  return taskTaggedUsers.attach(usersInsert);
+}
+
+/**
+ * Remove tagged users from task
+ */
+export function removeTaggedUsers(id, { users }) {
+  return new Task({ id }).taggedUsers().detach(users);
 }

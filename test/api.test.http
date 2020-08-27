@@ -153,7 +153,28 @@ content-type: application/json
     "description": "This is task fro karya project 1",
     "deadline": "2015-01-01",
     "project_id": 1,
-    "assignee_id": 4
+    "assignee_id": 3
+}
+
+###
+#add task users
+POST http://localhost:8000/api/tasks/1/add-users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGthcnlhLmNvbSIsInVzZXJJZCI6ImJhNzFlNzQ3LTIzOWYtNGZhYi1hMGY5LTc1M2MzNGQxZjg3NyIsImlhdCI6MTU5ODQ5NDU3NCwiZXhwIjoxNTk4NTMwOTc0fQ.Ia-Blg2v2AmDOorLeqB5nuuujyx7BcU4xCS3SPJMUZ4
+content-type: application/json
+
+{
+    "users": [{"user_id": 3}, {"user_id": 1}]
+}
+
+
+###
+#Remove Users from tasks
+DELETE  http://localhost:8000/api/tasks/1/remove-users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGthcnlhLmNvbSIsInVzZXJJZCI6ImJhNzFlNzQ3LTIzOWYtNGZhYi1hMGY5LTc1M2MzNGQxZjg3NyIsImlhdCI6MTU5ODQ5NDU3NCwiZXhwIjoxNTk4NTMwOTc0fQ.Ia-Blg2v2AmDOorLeqB5nuuujyx7BcU4xCS3SPJMUZ4
+content-type: application/json
+
+{
+    "users": [{"user_id": 3}, {"user_id": 1}]
 }
 
 # Comment
@@ -166,7 +187,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGthcnlh
 
 
 ###
-#create task
+#create comment
 POST http://localhost:8000/api/comments
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGthcnlhLmNvbSIsInVzZXJJZCI6ImJhNzFlNzQ3LTIzOWYtNGZhYi1hMGY5LTc1M2MzNGQxZjg3NyIsImlhdCI6MTU5ODQ5NDU3NCwiZXhwIjoxNTk4NTMwOTc0fQ.Ia-Blg2v2AmDOorLeqB5nuuujyx7BcU4xCS3SPJMUZ4
 content-type: application/json
@@ -178,21 +199,27 @@ content-type: application/json
 }
 
 ###
-#single task
+#single comment
 GET http://localhost:8000/api/comments/1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGthcnlhLmNvbSIsInVzZXJJZCI6ImJhNzFlNzQ3LTIzOWYtNGZhYi1hMGY5LTc1M2MzNGQxZjg3NyIsImlhdCI6MTU5ODQ5NDU3NCwiZXhwIjoxNTk4NTMwOTc0fQ.Ia-Blg2v2AmDOorLeqB5nuuujyx7BcU4xCS3SPJMUZ4
 content-type: application/json
 
 
 ###
-#edit task
+#edit comment
 PUT http://localhost:8000/api/comments/1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGthcnlhLmNvbSIsInVzZXJJZCI6ImJhNzFlNzQ3LTIzOWYtNGZhYi1hMGY5LTc1M2MzNGQxZjg3NyIsImlhdCI6MTU5ODQ5NDU3NCwiZXhwIjoxNTk4NTMwOTc0fQ.Ia-Blg2v2AmDOorLeqB5nuuujyx7BcU4xCS3SPJMUZ4
 content-type: application/json
 
 {
-    "text": "Task 1 editred",
+    "text": "Task 1 edited",
     "task_id": 1,
     "commenter_id": 2
 }
+
+###
+#delete comment
+DELETE http://localhost:8000/api/comments/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGthcnlhLmNvbSIsInVzZXJJZCI6ImJhNzFlNzQ3LTIzOWYtNGZhYi1hMGY5LTc1M2MzNGQxZjg3NyIsImlhdCI6MTU5ODQ5NDU3NCwiZXhwIjoxNTk4NTMwOTc0fQ.Ia-Blg2v2AmDOorLeqB5nuuujyx7BcU4xCS3SPJMUZ4
+content-type: application/json
 

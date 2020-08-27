@@ -42,7 +42,6 @@ async function projectValidator(req, res, next) {
  * @returns {Promise}
  */
 async function projectUpdateValidator(req, res, next) {
-  console.log(req.body);
   try {
     const validation = await validate(req.body, schema);
     const uniqueColumn = await columnUniqueCheckWithIgnore(new Project(), 'name', req.body.name, req.params.id);

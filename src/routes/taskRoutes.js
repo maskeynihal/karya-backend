@@ -30,4 +30,14 @@ router.put('/:id', findTask, taskUpdateValidator, taskController.update);
  */
 router.delete('/:id', findTask, taskController.deleteTask);
 
+/**
+ * POST /api/tasks/:id/add-user
+ */
+router.post('/:id/add-users', taskController.addTaggedUsers);
+
+/**
+ * DELETE /api/tasks/:id/add-user
+ */
+router.delete('/:id/remove-users', taskController.removeTaggedUsers);
+
 export default router;
