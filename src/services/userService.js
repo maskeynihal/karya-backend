@@ -70,7 +70,7 @@ export function createUser(user) {
  * @returns {Promise}
  */
 export function updateUser(id, user) {
-  return new User({ id }).save({ name: user.name });
+  return new User({ id }).save({ ...user });
 }
 
 /**

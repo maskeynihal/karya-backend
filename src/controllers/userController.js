@@ -40,7 +40,9 @@ export function fetchById(req, res, next) {
 export function create(req, res, next) {
   userService
     .createUser(req.body)
-    .then((data) => res.status(HttpStatus.CREATED).json({ data }))
+    .then((data) => {
+      res.status(HttpStatus.CREATED).json({ data });
+    })
     .catch((err) => next(err));
 }
 
@@ -54,7 +56,14 @@ export function create(req, res, next) {
 export function update(req, res, next) {
   userService
     .updateUser(req.params.id, req.body)
-    .then((data) => res.json({ data }))
+    .then((data) => {
+      data.role().detach();
+      data.role().attach({
+        user_id: data.id,
+        role_id: req.body.role_id
+      });
+      res.json({ data });
+    })
     .catch((err) => next(err));
 }
 

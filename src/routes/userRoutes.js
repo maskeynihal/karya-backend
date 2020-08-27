@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import * as userController from '@/controllers/userController';
-import { findUser, userValidator } from '@/validators/userValidator';
+import { findUser, userValidator, userUpdateValidator } from '@/validators/userValidator';
 import authenticated from 'middlewares/authenticated';
 
 const router = Router();
@@ -24,7 +24,7 @@ router.post('/', userValidator, userController.create);
 /**
  * PUT /api/users/:id
  */
-router.put('/:id', findUser, userValidator, userController.update);
+router.put('/:id', findUser, userUpdateValidator, userController.update);
 
 /**
  * DELETE /api/users/:id

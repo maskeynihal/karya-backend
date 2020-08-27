@@ -31,4 +31,8 @@ router.put('/:id', findProject, projectUpdateValidator, projectController.update
  */
 router.delete('/:id', findProject, projectController.deleteProject);
 
+/**
+ * POST /api/projects
+ */
+router.post('/add-user', projectController.addUser);
 export default router;
