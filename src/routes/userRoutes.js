@@ -32,4 +32,9 @@ router.put('/:id', findUser, userUpdateValidator, userController.update);
  */
 router.delete('/:id', findUser, basicAuthorization([ADMIN_ROLE_ID]), userController.deleteUser);
 
+/**
+ * POST /api/users/roles
+ */
+router.post('/role', basicAuthorization([ADMIN_ROLE_ID]), userController.fetchByRole);
+
 export default router;

@@ -10,7 +10,7 @@ import shouldBeProjectManger from './rules/shouldBeProjectManager';
 const schema = Joi.object({
   name: Joi.string().max(140).required(),
   description: Joi.string(),
-  project_manager_id: Joi.number()
+  project_manager_id: Joi.alternatives(Joi.number(), Joi.string())
 });
 
 /**

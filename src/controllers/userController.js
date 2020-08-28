@@ -41,6 +41,11 @@ export function create(req, res, next) {
   userService
     .createUser(req.body)
     .then((data) => {
+      data.role().detach();
+      data.role().attach({
+        user_id: data.id,
+        role_id: parseInt(req.body.role_id)
+      });
       res.status(HttpStatus.CREATED).json({ data });
     })
     .catch((err) => next(err));
@@ -60,7 +65,7 @@ export function update(req, res, next) {
       data.role().detach();
       data.role().attach({
         user_id: data.id,
-        role_id: req.body.role_id
+        role_id: parseInt(req.body.role_id)
       });
       res.json({ data });
     })
@@ -78,5 +83,19 @@ export function deleteUser(req, res, next) {
   userService
     .deleteUser(req.params.id)
     .then((data) => res.status(HttpStatus.NO_CONTENT).json({ data }))
+    .catch((err) => next(err));
+}
+
+/**
+ * Get a users by their roles.
+ *
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Function} next
+ */
+export function fetchByRole(req, res, next) {
+  userService
+    .fetchByRole(req.body.id)
+    .then((data) => res.json({ data }))
     .catch((err) => next(err));
 }

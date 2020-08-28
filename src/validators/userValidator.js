@@ -11,7 +11,7 @@ const schema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(8).required(),
   user_id: Joi.string(),
-  role_id: Joi.number()
+  role_id: Joi.alternatives(Joi.number(), Joi.string())
 });
 
 /**

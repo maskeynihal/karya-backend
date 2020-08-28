@@ -24,7 +24,7 @@ export function getAllProjects() {
  */
 export function getProject(id) {
   return new Project({ id })
-    .fetch()
+    .fetch({ withRelated: ['tasks.assignedUser', 'tasks.taggedUsers', 'projectManager', 'users'] })
     .then((project) => project)
     .catch(Project.NotFoundError, () => {
       throw Boom.notFound('Project not found');
