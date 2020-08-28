@@ -91,10 +91,10 @@ export function deleteUser(id) {
  * @param {Object} res
  * @param {Function} next
  */
-export async function fetchByRole(roleId) {
-  if (!roleId) return getAllUsers();
+export async function fetchByRole(roleId = []) {
+  if (!roleId.length) return getAllUsers();
   const users = await getAllUsers();
   return users.serialize().filter((user) => {
-    return user.role.length && user.role[0].id === roleId;
+    return user.role.length && roleId.includes(user.role[0].id);
   });
 }

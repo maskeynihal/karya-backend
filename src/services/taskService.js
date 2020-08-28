@@ -24,7 +24,7 @@ export function getAllTasks() {
  */
 export function getTask(id) {
   return new Task({ id })
-    .fetch()
+    .fetch({ withRelated: ['assignedUser', 'taggedUsers', 'comments.commenter'] })
     .then((task) => task)
     .catch(Task.NotFoundError, () => {
       throw Boom.notFound('Task not found');

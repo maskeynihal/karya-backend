@@ -231,5 +231,5 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGthcnlh
 content-type: application/json
 
 {
-    "id": 1
+    "id": [1,2]
 }
