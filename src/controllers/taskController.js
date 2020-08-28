@@ -51,8 +51,8 @@ export function create(req, res, next) {
  * @param {Object} res
  * @param {Function} next
  */
-export function update(req, res, next) {
-  taskService
+export async function update(req, res, next) {
+  const task = taskService
     .updateTask(req.params.id, req.body)
     .then((data) => res.json({ data }))
     .catch((err) => next(err));
@@ -69,5 +69,27 @@ export function deleteTask(req, res, next) {
   taskService
     .deleteTask(req.params.id)
     .then((data) => res.status(HttpStatus.NO_CONTENT).json({ data }))
+    .catch((err) => next(err));
+}
+
+/**
+ * Add Project User
+ */
+
+export function addTaggedUsers(req, res, next) {
+  taskService
+    .addTaggedUsers(req.params.id, req.body)
+    .then((data) => res.status(HttpStatus.CREATED).json({ data, success: true, message: 'Tag added for users' }))
+    .catch((err) => next(err));
+}
+
+/**
+ * Delete Project User
+ */
+
+export function removeTaggedUsers(req, res, next) {
+  taskService
+    .removeTaggedUsers(req.params.id, req.body)
+    .then((data) => res.status(HttpStatus.OK).json({ data, success: true, message: 'Tag removed for users' }))
     .catch((err) => next(err));
 }

@@ -2,13 +2,15 @@ import { Router } from 'express';
 
 import * as commentController from '@/controllers/commentController';
 import { findComment, commentValidator, commentUpdateValidator } from '@/validators/commentValidator';
+import basicAuthorization from 'middlewares/basicAuthorization';
+import { ADMIN_ROLE_ID, PROJECT_MANAGER_ROLE_ID } from '@/utils/constants';
 
 const router = Router();
 
 /**
  * GET /api/comments
  */
-router.get('/', commentController.fetchAll);
+router.get('/', basicAuthorization([ADMIN_ROLE_ID]), commentController.fetchAll);
 
 /**
  * GET /api/comments/:id

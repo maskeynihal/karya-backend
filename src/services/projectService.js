@@ -12,8 +12,7 @@ import hashPassword from '@/utils/hashPassword';
  */
 export function getAllProjects() {
   return Project.fetchAll({
-    withRelated: ['tasks', 'projectManager', 'users'],
-    debug: true
+    withRelated: ['tasks', 'projectManager', 'users']
   });
 }
 
@@ -25,7 +24,7 @@ export function getAllProjects() {
  */
 export function getProject(id) {
   return new Project({ id })
-    .fetch()
+    .fetch({ withRelated: ['tasks.assignedUser', 'tasks.taggedUsers', 'projectManager', 'users'] })
     .then((project) => project)
     .catch(Project.NotFoundError, () => {
       throw Boom.notFound('Project not found');
@@ -65,4 +64,21 @@ export function updateProject(id, project) {
  */
 export function deleteProject(id) {
   return new Project({ id }).fetch().then((project) => project.destroy());
+}
+
+/**
+ * Add Project User
+ */
+
+export async function addUsers(id, { users }) {
+  const projectUsers = new Project({ id }).users();
+  await projectUsers.detach(users);
+  return projectUsers.attach(users);
+}
+
+/**
+ * Remove users from projects
+ */
+export function removeUsers(id, { users }) {
+  return new Project({ id }).users().detach(users);
 }

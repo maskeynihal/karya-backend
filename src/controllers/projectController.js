@@ -71,3 +71,25 @@ export function deleteProject(req, res, next) {
     .then((data) => res.status(HttpStatus.NO_CONTENT).json({ data }))
     .catch((err) => next(err));
 }
+
+/**
+ * Add Project User
+ */
+
+export function addUsers(req, res, next) {
+  projectService
+    .addUsers(req.params.id, req.body)
+    .then((data) => res.status(HttpStatus.CREATED).json({ data, success: true, message: 'Users added to projects' }))
+    .catch((err) => next(err));
+}
+
+/**
+ * Delete Project User
+ */
+
+export function removeUsers(req, res, next) {
+  projectService
+    .removeUsers(req.params.id, req.body)
+    .then((data) => res.status(HttpStatus.OK).json({ data, success: true, message: 'User deleted from project' }))
+    .catch((err) => next(err));
+}

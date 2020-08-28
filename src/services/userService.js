@@ -12,8 +12,7 @@ import hashPassword from '@/utils/hashPassword';
  */
 export function getAllUsers() {
   return User.fetchAll({
-    withRelated: ['role', 'projects', 'tasksAssigns', 'tasksTags', 'comments'],
-    debug: true
+    withRelated: ['role', 'projects', 'tasksAssigns', 'tasksTags', 'comments']
   });
 }
 
@@ -25,8 +24,10 @@ export function getAllUsers() {
  */
 export function getUser(id) {
   return new User({ id })
-    .fetch()
-    .then((user) => user)
+    .fetch({
+      withRelated: ['role', 'projects', 'tasksAssigns', 'tasksTags', 'comments']
+    })
+    .then((user) => user.serialize())
     .catch(User.NotFoundError, () => {
       throw Boom.notFound('User not found');
     });
@@ -40,7 +41,7 @@ export function getUser(id) {
  */
 export function getUserByEmail(email) {
   return new User({ email })
-    .fetch()
+    .fetch({ withRelated: ['role'] })
     .then((user) => user)
     .catch(User.NotFoundError, () => {
       throw Boom.notFound('User not found');
@@ -70,7 +71,7 @@ export function createUser(user) {
  * @returns {Promise}
  */
 export function updateUser(id, user) {
-  return new User({ id }).save({ ...user });
+  return new User({ id }).save({ name: user.name, email: user.email, password: user.password });
 }
 
 /**
@@ -81,4 +82,19 @@ export function updateUser(id, user) {
  */
 export function deleteUser(id) {
   return new User({ id }).fetch().then((user) => user.destroy());
+}
+
+/**
+ * Get a users by their roles.
+ *
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Function} next
+ */
+export async function fetchByRole(roleId) {
+  if (!roleId) return getAllUsers();
+  const users = await getAllUsers();
+  return users.serialize().filter((user) => {
+    return user.role.length && user.role[0].id === roleId;
+  });
 }

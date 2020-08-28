@@ -4,12 +4,13 @@ import validate from '@/utils/validate';
 import * as projectService from '@/services/projectService';
 import { columnUniqueCheck, columnUniqueCheckWithIgnore } from '@/utils/columnUniqueCheck';
 import Project from 'models/project';
+import shouldBeProjectManger from './rules/shouldBeProjectManager';
 
 // Validation schema
 const schema = Joi.object({
   name: Joi.string().max(140).required(),
   description: Joi.string(),
-  project_manager_id: Joi.number()
+  project_manager_id: Joi.alternatives(Joi.number(), Joi.string())
 });
 
 /**
@@ -24,6 +25,7 @@ async function projectValidator(req, res, next) {
   try {
     const validation = await validate(req.body, schema);
     const uniqueColumn = await columnUniqueCheck(new Project(), 'name', req.body.name);
+    const isProjectManger = await shouldBeProjectManger(req.body.project_manager_id);
     next();
     return validation;
   } catch (error) {
@@ -40,10 +42,10 @@ async function projectValidator(req, res, next) {
  * @returns {Promise}
  */
 async function projectUpdateValidator(req, res, next) {
-  console.log(req.body);
   try {
     const validation = await validate(req.body, schema);
     const uniqueColumn = await columnUniqueCheckWithIgnore(new Project(), 'name', req.body.name, req.params.id);
+    const isProjectManger = await shouldBeProjectManger(req.body.project_manager_id);
     next();
     return validation;
   } catch (error) {

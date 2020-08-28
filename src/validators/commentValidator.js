@@ -7,8 +7,8 @@ import Comment from '@/models/comment';
 // Validation schema
 const schema = Joi.object({
   text: Joi.string().max(280).required(),
-  task_id: Joi.number(),
-  commenter_id: Joi.number()
+  task_id: Joi.alternatives(Joi.number(), Joi.string()),
+  commenter_id: Joi.alternatives(Joi.number(), Joi.string())
 });
 
 /**
